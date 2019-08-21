@@ -22,10 +22,10 @@ SS
 ### Create an AWS ec2 instance every terraform
 * `git clone http://github.com/umair-io/terraform-aws.git`
 * `cd terraform-aws`
+* Modify vartiables.tf file and replace `default` for aws_access_key and aws_secret_key. Both can be found in the downloaded csv file.
 * Install AWS terrform plugin
   `terraform init`
 * Run Terraform plan to see what resources will be built
   `terraform plan`
-* Modify vartiables.tf file and replace `default` for aws_access_key and aws_secret_key. Both can be found in the downloaded csv file.
 * Run Terraform apply to build the resources
   `terraform apply`
