@@ -12,7 +12,7 @@
 * Keep clicking next and on the last page click 'Create user'
 * Download .csv file. We will need it to allow terraform to access our AWS account.
 
-### Create an AWS ec2 instance every terraform
+### Create an Webserver on AWS EC2 instance using Terraform 
 * `git clone http://github.com/umair-io/terraform-aws.git`
 * `cd terraform-aws`
 * Modify vartiables.tf file and replace `default` for aws_access_key and aws_secret_key. Both can be found in the downloaded csv file.
