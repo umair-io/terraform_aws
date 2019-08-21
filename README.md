@@ -5,19 +5,12 @@
 `brew install terraform`
 
 ### Create AWS access key for CLI access
-.....
 * Go to AWS IAM Console and Create a User
 `https://console.aws.amazon.com/iam/home?region=eu-west-2#/users`
 * Type username and select 'Programmatic access'
 * Give user 'AdministratorAccess' from the existing polcies.
 * Keep clicking next and on the last page click 'Create user'
 * Download .csv file. We will need it to allow terraform to access our AWS account.
-
-
-### Upload your SSH public key to AWS
-* `cp ~/.ssh/id_rsa.pub ~/`
-* Go to console, upload key and give it a name: https://eu-west-2.console.aws.amazon.com/ec2/v2/home?region=eu-west-2#KeyPairs:sort=keyName
-SS
 
 ### Create an AWS ec2 instance every terraform
 * `git clone http://github.com/umair-io/terraform-aws.git`
