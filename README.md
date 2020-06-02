@@ -11,7 +11,7 @@ Amongst other benefits, it allows use to create a blueprint of our infrastructur
 
 ### What are we going to do today?
 
-We are going to be building our first ec2 instance, without AWS GUI console, in an automated way using terraform. We will also setup a security group (firewall) to allow for web port so we can view our web server (which we will alos provision) in the browser.
+We are going to be building our first ec2 instance, without AWS GUI console, in an automated way using terraform. We will also setup a security group (firewall) to open web port (80) so we can view our web server (which we will also provision) in the browser.
 
  
  Lets get started!
