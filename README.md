@@ -40,7 +40,7 @@ aws_access_key_id = [YOUR 'Access key ID' IN DOWNLOADED CSV]
 aws_secret_access_key = [YOUR 'Secret access key' IN DOWNLOADED CSV]" >~/.aws/credentials
 ```
 
-This will now allow terraform to automatically pick you AWS creds from ~/.aws/credentials
+This will now allow terraform to automatically pick your AWS creds from ~/.aws/credentials
 
 
   ## Terraform
@@ -61,7 +61,7 @@ brew install terraform
 #### Creating variables file
 We'll start by creating the variables file. This will contain dynamic variables which will be used by the terraform template file. Create a file **variables.tf** and fill it with the following contents (feel free to replace eu-west-2 with your preferred region):
 
-```json
+```tf
 variable "aws_region" {
   description = "The AWS region to deploy into"
   default     = "eu-west-2"
@@ -75,7 +75,7 @@ variable "my_key_pair" {
 
 #### Creating terraform.tf file
 Now it's to create a terraform.tf file which will define what our infrastructure will contain.  Create a file **terraform.tf** and fill it with the following contents:
-```json
+```tf
 provider "aws" {
     region = "${var.aws_region}"
 }
