@@ -1,12 +1,23 @@
 provider "aws" {
-    access_key = "${var.aws_access_key}"
-    secret_key = "${var.aws_secret_key}"
     region = "${var.aws_region}"
 }
 
+#Ensure that your ssh public access key exists under ~/.ssh/id_rsa.pub
 resource "aws_key_pair" "auth" {
   key_name   = "${var.my_key_pair}"
   public_key = "${file("~/.ssh/id_rsa.pub")}"
+}
+
+data "aws_ami" "amazon-linux-2" {
+ most_recent = true
+ filter {
+   name   = "owner-alias"
+   values = ["amazon"]
+ }
+ filter {
+   name   = "name"
+   values = ["amzn2-ami-hvm*"]
+ }
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -28,6 +39,7 @@ resource "aws_security_group" "allow_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
+    # All ports
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -36,7 +48,7 @@ resource "aws_security_group" "allow_ssh" {
 }
 
 resource "aws_instance" "webserver" {
-  ami = "ami-0d8e27447ec2c8410"
+  ami = "${data.aws_ami.amazon-linux-2.id}"
   instance_type = "t2.micro"
   key_name = "${aws_key_pair.auth.id}"
   security_groups = ["allow_ssh"]
@@ -50,7 +62,7 @@ resource "aws_instance" "webserver" {
     }
     inline = [
       "sudo yum -y install httpd",
-      "echo '<h1>Hi HMRC DevOps</h1>' > index.html",
+      "echo '<h1>Hi DevOps</h1>' > index.html",
       "sudo cp index.html /var/www/html/index.html",
       "sudo service httpd start"
     ]
@@ -60,4 +72,3 @@ resource "aws_instance" "webserver" {
   }
   depends_on = ["aws_security_group.allow_ssh"]
 }
-
